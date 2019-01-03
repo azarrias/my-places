@@ -94,4 +94,9 @@
     <string name="btn_preferences_txt">Preferences</string>
     <string name="btn_about_txt">About</string>
     <string name="btn_quit_txt">Quit</string>
+    <string name="tv_name_txt">Name:</string>
+    <string name="et_name_txt">Enter name here</string>
+    <string name="tv_type_txt">Type:</string>
+    <string name="tv_address_txt">Address:</string>
+    <string name="et_address_txt">Enter address</string>
 </resources>
