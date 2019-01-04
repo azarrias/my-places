@@ -95,8 +95,14 @@
     <string name="btn_about_txt">About</string>
     <string name="btn_quit_txt">Quit</string>
     <string name="tv_name_txt">Name:</string>
-    <string name="et_name_txt">Enter name here</string>
+    <string name="et_name_txt">Jedi Temple</string>
     <string name="tv_type_txt">Type:</string>
     <string name="tv_address_txt">Address:</string>
-    <string name="et_address_txt">Enter address</string>
+    <string name="et_address_txt">Federal District, Galactic City. Coruscant</string>
+    <string name="tv_phone_txt">Phone:</string>
+    <string name="et_phone_txt">555465839</string>
+    <string name="tv_url_txt">URL:</string>
+    <string name="et_url_txt">https://</string>
+    <string name="tv_comment_txt">Comment:</string>
+    <string name="et_comment_txt">Add a comment</string>
 </resources>

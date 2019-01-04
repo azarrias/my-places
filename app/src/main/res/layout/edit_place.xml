@@ -25,7 +25,7 @@
             android:id="@+id/tv_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text="@string/tv_type_txt"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/tv_name"
@@ -35,27 +35,56 @@
             android:id="@+id/tv_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text="@string/tv_address_txt"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
             app:layout_constraintTop_toBottomOf="@+id/tv_type" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/tv_phone_txt"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_address" />
+
+        <TextView
+            android:id="@+id/tv_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/tv_url_txt"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_phone" />
+
+        <TextView
+            android:id="@+id/tv_comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/tv_comment_txt"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@+id/tv_url" />
 
         <android.support.constraint.Barrier
             android:id="@+id/barrier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="end"
-            app:constraint_referenced_ids="tv_name,tv_type,tv_address" />
+            app:constraint_referenced_ids="tv_name,tv_type,tv_address,tv_phone,tv_url,tv_comment" />
 
         <EditText
             android:id="@+id/et_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:ems="10"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            app:layout_constraintWidth_percent="0.7"
             android:hint="@string/et_name_txt"
             android:inputType="textPersonName"
             app:layout_constraintBottom_toBottomOf="@+id/tv_name"
@@ -66,25 +95,55 @@
             android:id="@+id/spinner"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="@+id/tv_type"
-            app:layout_constraintStart_toEndOf="@id/barrier"
+            app:layout_constraintStart_toStartOf="@+id/et_name"
             app:layout_constraintTop_toTopOf="@+id/tv_type"
-            app:layout_constraintVertical_bias="1.0"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <EditText
             android:id="@+id/et_address"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:ems="10"
             android:hint="@string/et_address_txt"
             android:inputType="textPersonName"
+            app:layout_constraintWidth_percent="0.7"
             app:layout_constraintBottom_toBottomOf="@+id/tv_address"
-            app:layout_constraintStart_toEndOf="@id/barrier"
-            app:layout_constraintTop_toTopOf="@+id/tv_address"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintStart_toStartOf="@+id/et_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_address" />
+
+        <EditText
+            android:id="@+id/et_url"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/et_url_txt"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_url"
+            app:layout_constraintStart_toStartOf="@+id/et_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_url"
+            app:layout_constraintWidth_percent="0.7" />
+
+        <EditText
+            android:id="@+id/et_comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/et_comment_txt"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_comment"
+            app:layout_constraintStart_toStartOf="@+id/et_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_comment"
+            app:layout_constraintWidth_percent="0.7" />
+
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/et_phone_txt"
+            android:inputType="phone"
+            app:layout_constraintDimensionRatio="H, 20:10"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_phone"
+            app:layout_constraintStart_toStartOf="@+id/et_name"
+            app:layout_constraintTop_toTopOf="@+id/tv_phone" />
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v4.widget.NestedScrollView>
