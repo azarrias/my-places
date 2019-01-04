@@ -18,19 +18,27 @@
         <TableRow>
 
             <Button
+                android:id="@+id/btn_show_places"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/btn_show_places_txt" />
+
+            <Button
                 android:id="@+id/btn_preferences"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:text="@string/btn_preferences_txt" />
 
-            <Button
-                android:id="@+id/btn_show_places"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="@string/btn_show_places_txt" />
         </TableRow>
 
         <TableRow>
+
+            <Button
+                android:id="@+id/btn_about"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:text="@string/btn_about_txt" />
 
             <Button
                 android:id="@+id/btn_quit"
@@ -39,12 +47,6 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/btn_quit_txt" />
 
-            <Button
-                android:id="@+id/btn_about"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:text="@string/btn_about_txt" />
         </TableRow>
     </TableLayout>
 </android.support.v4.widget.NestedScrollView>
