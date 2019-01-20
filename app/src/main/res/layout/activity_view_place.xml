@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_view_1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ViewPlaceActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:text="Place names"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <ImageView
+                android:id="@+id/type_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="type logo"
+                android:src="@drawable/otros" />
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="Place type"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <ImageView
+                android:id="@+id/address_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="address logo"
+                android:src="@android:drawable/ic_menu_myplaces" />
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="Address"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <ImageView
+                android:id="@+id/phone_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="phone logo"
+                android:src="@android:drawable/ic_menu_call" />
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="Phone number"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <ImageView
+                android:id="@+id/url_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="url logo"
+                android:src="@android:drawable/ic_menu_mapmode" />
+            <TextView
+                android:id="@+id/url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="URL"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <ImageView
+                android:id="@+id/comment_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="comment logo"
+                android:src="@android:drawable/ic_menu_info_details" />
+            <TextView
+                android:id="@+id/comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="Comment"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+            <ImageView
+                android:id="@+id/calendar_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="calendar logo"
+                android:src="@android:drawable/ic_menu_my_calendar" />
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="Date"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+            <ImageView
+                android:id="@+id/time_logo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="time logo"
+                android:src="@android:drawable/ic_menu_recent_history" />
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:text="Time"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+        <RatingBar
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_toRightOf="@+id/pic"
+            android:rating="3" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/pic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="picture"
+                android:src="@drawable/foto_epsg" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right" >
+                <ImageView
+                    android:id="@+id/camera"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="camera logo"
+                    android:src="@android:drawable/ic_menu_camera" />
+                <ImageView
+                    android:id="@+id/gallery"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:contentDescription="gallery logo"
+                    android:src="@android:drawable/ic_menu_gallery" />
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+</ScrollView>
