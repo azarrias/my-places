@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static IPlaceDAO places = new PlaceDAOList();
     private Button btnAbout;
+    private Button btnViewPlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
                 launchAbout(null);
             }
         });
+
+        btnViewPlace = findViewById(R.id.btn_show_places);
+        btnViewPlace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchViewPlace(null);
+            }
+        });
     }
 
     @Override
@@ -62,6 +71,10 @@ public class MainActivity extends AppCompatActivity {
         }
         if (id == R.id.action_about) {
             launchAbout(null);
+            return true;
+        }
+        if (id == R.id.action_search) {
+            launchViewPlace(null);
             return true;
         }
 
