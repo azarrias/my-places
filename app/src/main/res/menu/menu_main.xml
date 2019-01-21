@@ -4,12 +4,21 @@
     tools:context="com.waxtadpolegames.android.myplaces.MainActivity">
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="100"
+        android:orderInCategory="5"
         android:title="@string/action_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
         app:showAsAction="never" />
     <item
         android:id="@+id/action_about"
+        android:orderInCategory="10"
         android:title="@string/btn_about_txt"
-        android:icon="@android:drawable/ic_menu_info_details" />
+        android:icon="@android:drawable/ic_menu_info_details"
+        app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="115"
+        android:title="@string/action_search"
+        android:icon="@android:drawable/ic_menu_search"
+        app:showAsAction="always|collapseActionView" />
 
 </menu>
