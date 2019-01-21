@@ -105,4 +105,5 @@
     <string name="et_url_txt">https://</string>
     <string name="tv_comment_txt">Comment:</string>
     <string name="et_comment_txt">Add a comment</string>
+    <string name="tv_about_str">MyPlaces helps you keep track of all the places that you have visited. Created by Adolfo Zarrias.</string>
 </resources>
