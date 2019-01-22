@@ -107,4 +107,8 @@
     <string name="et_comment_txt">Añade un comentario</string>
     <string name="tv_about_str">Mis Lugares te ayuda a llevar un registro de todos los lugares que has visitado. Creado por Adolfo Zarrias.</string>
     <string name="action_search">Buscar</string>
+    <string name="selection_place_title">Selección de lugar</string>
+    <string name="selection_place_message">introduce el id:</string>
+    <string name="dialog_positive_text">Aceptar</string>
+    <string name="dialog_negative_text">Cancelar</string>
 </resources>

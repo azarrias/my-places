@@ -1,15 +1,18 @@
 package com.waxtadpolegames.android.myplaces;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -87,8 +90,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void launchViewPlace(View view) {
-        Intent i = new Intent(this, ViewPlaceActivity.class);
-        i.putExtra("data_id", (long)0);
-        startActivity(i);
+        final EditText input = new EditText(this);
+        input.setText("0");
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.selection_place_title)
+                .setMessage(R.string.selection_place_message)
+                .setView(input)
+                .setPositiveButton(R.string.dialog_positive_text, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        long id = Long.parseLong(input.getText().toString());
+                        Intent i = new Intent(MainActivity.this, ViewPlaceActivity.class);
+                        i.putExtra("data_id", id);
+                        startActivity(i);
+                    }
+                })
+                .setNegativeButton(R.string.dialog_negative_text, null)
+                .show();
     }
 }
