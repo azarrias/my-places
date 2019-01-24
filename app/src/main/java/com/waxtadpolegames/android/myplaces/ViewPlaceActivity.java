@@ -2,6 +2,8 @@ package com.waxtadpolegames.android.myplaces;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -75,5 +77,29 @@ public class ViewPlaceActivity extends AppCompatActivity {
                 place.setRating(rating);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_view_place, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_share:
+                return true;
+            case R.id.action_directions:
+                return true;
+            case R.id.action_edit:
+                return true;
+            case R.id.action_delete:
+                MainActivity.places.delete((int)id);
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
