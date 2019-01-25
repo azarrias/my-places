@@ -5,25 +5,25 @@
     <item
         android:id="@+id/action_share"
         android:icon="@android:drawable/ic_menu_share"
-        android:title="share"
+        android:title="@string/action_share_title"
         android:orderInCategory="10"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_directions"
         android:icon="@android:drawable/ic_menu_directions"
-        android:title="directions"
+        android:title="@string/action_directions_title"
         android:orderInCategory="20"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_edit"
         android:icon="@android:drawable/ic_menu_edit"
-        android:title="edit"
+        android:title="@string/action_edit_title"
         android:orderInCategory="30"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_delete"
         android:icon="@android:drawable/ic_menu_delete"
-        android:title="delete"
+        android:title="@string/action_delete_title"
         android:orderInCategory="40"
         app:showAsAction="ifRoom" />
 </menu>

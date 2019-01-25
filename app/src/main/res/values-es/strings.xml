@@ -111,4 +111,10 @@
     <string name="selection_place_message">introduce el id:</string>
     <string name="dialog_positive_text">Aceptar</string>
     <string name="dialog_negative_text">Cancelar</string>
+    <string name="delete_place_title">Borrar lugar</string>
+    <string name="delete_place_message">¿Seguro que quieres eliminar este lugar?</string>
+    <string name="action_share_title">Compartir</string>
+    <string name="action_directions_title">Navegación</string>
+    <string name="action_edit_title">Editar</string>
+    <string name="action_delete_title">Borrar</string>
 </resources>

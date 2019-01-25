@@ -1,5 +1,8 @@
 package com.waxtadpolegames.android.myplaces;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -95,11 +98,24 @@ public class ViewPlaceActivity extends AppCompatActivity {
             case R.id.action_edit:
                 return true;
             case R.id.action_delete:
-                MainActivity.places.delete((int)id);
-                finish();
+                deletePlace((int)id);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void deletePlace(final int id) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.delete_place_title)
+                .setMessage(R.string.delete_place_message)
+                .setPositiveButton(R.string.dialog_positive_text, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        MainActivity.places.delete(id);
+                        finish();
+                    }
+                })
+                .setNegativeButton(R.string.dialog_negative_text, null)
+                .show();
     }
 }
