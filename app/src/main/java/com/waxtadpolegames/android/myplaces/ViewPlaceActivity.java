@@ -96,6 +96,7 @@ public class ViewPlaceActivity extends AppCompatActivity {
             case R.id.action_directions:
                 return true;
             case R.id.action_edit:
+                editPlace((int)id);
                 return true;
             case R.id.action_delete:
                 deletePlace((int)id);
@@ -117,5 +118,11 @@ public class ViewPlaceActivity extends AppCompatActivity {
                 })
                 .setNegativeButton(R.string.dialog_negative_text, null)
                 .show();
+    }
+
+    public void editPlace(final long id) {
+        Intent i = new Intent(this, EditPlaceActivity.class);
+        i.putExtra("data_id", id);
+        startActivity(i);
     }
 }

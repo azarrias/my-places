@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ViewPlaceActivity" />
+        <activity android:name=".EditPlaceActivity" />
         <activity android:name=".AboutActivity"
             android:label="@string/btn_about_txt"
             android:theme="@style/Theme.AppCompat.Dialog"></activity>
