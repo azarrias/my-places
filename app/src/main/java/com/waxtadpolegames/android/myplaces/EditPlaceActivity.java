@@ -3,6 +3,7 @@ package com.waxtadpolegames.android.myplaces;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -45,5 +46,12 @@ public class EditPlaceActivity extends AppCompatActivity {
 
         comment = findViewById(R.id.et_comment);
         comment.setText(place.getComment());
+
+        type = findViewById(R.id.sp_type);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, TypePlace.getNames());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        type.setAdapter(adapter);
+        type.setSelection(place.getType().ordinal());
     }
 }
