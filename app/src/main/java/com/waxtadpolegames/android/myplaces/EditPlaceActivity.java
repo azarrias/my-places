@@ -2,6 +2,7 @@ package com.waxtadpolegames.android.myplaces;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -53,5 +54,11 @@ public class EditPlaceActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         type.setAdapter(adapter);
         type.setSelection(place.getType().ordinal());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_save_place, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }

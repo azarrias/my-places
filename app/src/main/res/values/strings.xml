@@ -117,4 +117,6 @@
     <string name="action_directions_title">Directions</string>
     <string name="action_edit_title">Edit</string>
     <string name="action_delete_title">Delete</string>
+    <string name="action_save_str">Save</string>
+    <string name="action_cancel_str">Cancel</string>
 </resources>

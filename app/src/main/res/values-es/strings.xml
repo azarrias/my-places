@@ -117,4 +117,6 @@
     <string name="action_directions_title">Navegación</string>
     <string name="action_edit_title">Editar</string>
     <string name="action_delete_title">Borrar</string>
+    <string name="action_save_str">Guardar</string>
+    <string name="action_cancel_str">Cancelar</string>
 </resources>
