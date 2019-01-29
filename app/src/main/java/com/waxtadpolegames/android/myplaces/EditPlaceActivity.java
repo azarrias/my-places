@@ -3,6 +3,7 @@ package com.waxtadpolegames.android.myplaces;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -60,5 +61,29 @@ public class EditPlaceActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_save_place, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_save_edit:
+                saveEdit();
+                return true;
+            case R.id.action_cancel_edit:
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void saveEdit() {
+        place.setName(name.getText().toString());
+        place.setType(TypePlace.values()[type.getSelectedItemPosition()]);
+        place.setAddress(address.getText().toString());
+        place.setPhone(phone.getText().toString());
+        place.setUrl(url.getText().toString());
+        place.setComment(comment.getText().toString());
+        MainActivity.places.update((int)id, place);
+        finish();
     }
 }
