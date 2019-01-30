@@ -2,6 +2,7 @@ package com.waxtadpolegames.android.myplaces;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import java.util.Date;
 public class ViewPlaceActivity extends AppCompatActivity {
     private long id;
     private Place place;
+    final static int REQUEST_CODE_EDIT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,64 @@ public class ViewPlaceActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         id = extras.getLong("data_id", -1);
+
+        updateViews();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_view_place, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_share:
+                return true;
+            case R.id.action_directions:
+                return true;
+            case R.id.action_edit:
+                editPlace((int)id);
+                return true;
+            case R.id.action_delete:
+                deletePlace((int)id);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == REQUEST_CODE_EDIT) {
+            updateViews();
+            // force to re-paint this view
+            findViewById(R.id.scroll_view_1).invalidate();
+        }
+    }
+
+    public void deletePlace(final int id) {
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.delete_place_title)
+                .setMessage(R.string.delete_place_message)
+                .setPositiveButton(R.string.dialog_positive_text, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        MainActivity.places.delete(id);
+                        finish();
+                    }
+                })
+                .setNegativeButton(R.string.dialog_negative_text, null)
+                .show();
+    }
+
+    public void editPlace(final long id) {
+        Intent i = new Intent(this, EditPlaceActivity.class);
+        i.putExtra("data_id", id);
+        startActivityForResult(i, REQUEST_CODE_EDIT);
+    }
+
+    public void updateViews() {
         place = MainActivity.places.get((int)id);
 
         TextView name = findViewById(R.id.name);
@@ -80,49 +140,5 @@ public class ViewPlaceActivity extends AppCompatActivity {
                 place.setRating(rating);
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_view_place, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_share:
-                return true;
-            case R.id.action_directions:
-                return true;
-            case R.id.action_edit:
-                editPlace((int)id);
-                return true;
-            case R.id.action_delete:
-                deletePlace((int)id);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    public void deletePlace(final int id) {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.delete_place_title)
-                .setMessage(R.string.delete_place_message)
-                .setPositiveButton(R.string.dialog_positive_text, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        MainActivity.places.delete(id);
-                        finish();
-                    }
-                })
-                .setNegativeButton(R.string.dialog_negative_text, null)
-                .show();
-    }
-
-    public void editPlace(final long id) {
-        Intent i = new Intent(this, EditPlaceActivity.class);
-        i.putExtra("data_id", id);
-        startActivity(i);
     }
 }
