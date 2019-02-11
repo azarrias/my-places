@@ -17,8 +17,6 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
 
     public static IPlaceDAO places = new PlaceDAOList();
-    private Button btnAbout;
-    private Button btnViewPlace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,22 +32,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-            }
-        });
-
-        btnAbout = findViewById(R.id.btn_about);
-        btnAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchAbout(null);
-            }
-        });
-
-        btnViewPlace = findViewById(R.id.btn_show_places);
-        btnViewPlace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchViewPlace(null);
             }
         });
     }
