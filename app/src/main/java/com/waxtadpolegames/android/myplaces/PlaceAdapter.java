@@ -15,6 +15,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder> 
     protected IPlaceDAO places;         // List of places to display
     protected LayoutInflater inflater;  // Creates layouts from XML specs
     protected Context context;          // Needed by the inflater
+    protected View.OnClickListener onItemClickListener;
 
     public PlaceAdapter(Context context, IPlaceDAO places) {
         this.context = context;
@@ -26,6 +27,7 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder> 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = inflater.inflate(R.layout.item_places, parent, false);
+        v.setOnClickListener(onItemClickListener);
         return new ViewHolder(v);
     }
 
@@ -73,5 +75,9 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.ViewHolder> 
             image = itemView.findViewById(R.id.place_picture);
             ratingBar = itemView.findViewById(R.id.place_rating);
         }
+    }
+
+    public void setOnItemClickListener(View.OnClickListener onClickListener) {
+        onItemClickListener = onClickListener;
     }
 }

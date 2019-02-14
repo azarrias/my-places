@@ -45,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
+
+        adapter.setOnItemClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            int pos = recyclerView.getChildAdapterPosition(v);
+            launchViewPlace(pos);
+            }
+        });
     }
 
     @Override
@@ -61,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
@@ -70,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         if (id == R.id.action_search) {
-            launchViewPlace(null);
+            openViewPlaceDialog(null);
             return true;
         }
 
@@ -82,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void launchViewPlace(View view) {
+    public void openViewPlaceDialog(View view) {
         final EditText input = new EditText(this);
         input.setText("0");
         new AlertDialog.Builder(this)
@@ -92,12 +99,16 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.dialog_positive_text, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         long id = Long.parseLong(input.getText().toString());
-                        Intent i = new Intent(MainActivity.this, ViewPlaceActivity.class);
-                        i.putExtra("data_id", id);
-                        startActivity(i);
+                        launchViewPlace(id);
                     }
                 })
                 .setNegativeButton(R.string.dialog_negative_text, null)
                 .show();
+    }
+
+    private void launchViewPlace(long id) {
+        Intent i = new Intent(MainActivity.this, ViewPlaceActivity.class);
+        i.putExtra("data_id", id);
+        startActivity(i);
     }
 }
