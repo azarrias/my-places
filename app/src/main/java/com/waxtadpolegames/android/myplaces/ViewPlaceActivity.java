@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -21,6 +22,7 @@ public class ViewPlaceActivity extends AppCompatActivity {
     private long id;
     private Place place;
     final static int REQUEST_CODE_EDIT = 1;
+    LinearLayout llAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,14 @@ public class ViewPlaceActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         id = extras.getLong("data_id", -1);
+
+        llAddress = findViewById(R.id.ll_address);
+        llAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMap(v);
+            }
+        });
 
         updateViews();
     }
@@ -104,6 +114,14 @@ public class ViewPlaceActivity extends AppCompatActivity {
         Intent i = new Intent(this, EditPlaceActivity.class);
         i.putExtra("data_id", id);
         startActivityForResult(i, REQUEST_CODE_EDIT);
+    }
+
+    public void phoneCall(View view) {
+        startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + place.getPhone())));
+    }
+
+    public void openWebSite(View view) {
+        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(place.getUrl())));
     }
 
     public void updateViews() {
