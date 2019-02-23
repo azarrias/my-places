@@ -2,6 +2,7 @@ package com.waxtadpolegames.android.myplaces;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -42,8 +43,13 @@ public class ViewPlaceActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_share:
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT, place.getName() + " - " + place.getUrl());
+                startActivity(intent);
                 return true;
             case R.id.action_directions:
+                showMap(null);
                 return true;
             case R.id.action_edit:
                 editPlace((int)id);
@@ -54,6 +60,21 @@ public class ViewPlaceActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void showMap(View view) {
+        Uri uri;
+        double latitude = place.getPosition().getLatitude();
+        double longitude = place.getPosition().getLongitude();
+
+        if (latitude != 0 || longitude != 0) {
+            uri = Uri.parse("geo:" + latitude + "," + longitude);
+        } else {
+            uri = Uri.parse("geo:0,0?q=" + place.getAddress());
+        }
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 
     @Override
