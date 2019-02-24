@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -31,6 +32,7 @@ public class ViewPlaceActivity extends AppCompatActivity {
     private LinearLayout llPhone;
     private LinearLayout llUrl;
     private ImageView galleryLogo;
+    private ImageView ivPicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,8 @@ public class ViewPlaceActivity extends AppCompatActivity {
                 openGallery(v);
             }
         });
+
+        ivPicture = findViewById(R.id.pic);
 
         updateViews();
     }
@@ -125,6 +129,11 @@ public class ViewPlaceActivity extends AppCompatActivity {
             updateViews();
             // force to re-paint this view
             findViewById(R.id.scroll_view_1).invalidate();
+        } else if (data != null && requestCode == REQUEST_CODE_GALLERY) {
+            place.setPhoto(data.getDataString());
+            setPicture(ivPicture, place.getPhoto());
+        } else {
+            Toast.makeText(this, "Picture not loaded", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -159,6 +168,14 @@ public class ViewPlaceActivity extends AppCompatActivity {
     public void openGallery(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, REQUEST_CODE_GALLERY);
+    }
+
+    protected void setPicture(ImageView imageView, String uri) {
+        if (uri != null && !uri.isEmpty() && !uri.equals("null")) {
+            imageView.setImageURI(Uri.parse(uri));
+        } else {
+            imageView.setImageBitmap(null);
+        }
     }
 
     public void updateViews() {
@@ -216,5 +233,7 @@ public class ViewPlaceActivity extends AppCompatActivity {
                 place.setRating(rating);
             }
         });
+
+        setPicture(ivPicture, place.getPhoto());
     }
 }
