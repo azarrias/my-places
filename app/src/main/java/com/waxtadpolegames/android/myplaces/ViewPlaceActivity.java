@@ -3,6 +3,7 @@ package com.waxtadpolegames.android.myplaces;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -19,12 +20,17 @@ import java.text.DateFormat;
 import java.util.Date;
 
 public class ViewPlaceActivity extends AppCompatActivity {
+
     private long id;
     private Place place;
+
     final static int REQUEST_CODE_EDIT = 1;
-    LinearLayout llAddress;
-    LinearLayout llPhone;
-    LinearLayout llUrl;
+    final static int REQUEST_CODE_GALLERY = 2;
+
+    private LinearLayout llAddress;
+    private LinearLayout llPhone;
+    private LinearLayout llUrl;
+    private ImageView galleryLogo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +61,14 @@ public class ViewPlaceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 phoneCall(v);
+            }
+        });
+
+        galleryLogo = findViewById(R.id.gallery);
+        galleryLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery(v);
             }
         });
 
@@ -140,6 +154,11 @@ public class ViewPlaceActivity extends AppCompatActivity {
 
     public void openWebSite(View view) {
         startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(place.getUrl())));
+    }
+
+    public void openGallery(View view) {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(intent, REQUEST_CODE_GALLERY);
     }
 
     public void updateViews() {
