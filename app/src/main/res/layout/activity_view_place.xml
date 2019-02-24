@@ -57,6 +57,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/ll_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
@@ -75,6 +76,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/ll_url"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal" >

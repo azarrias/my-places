@@ -23,6 +23,8 @@ public class ViewPlaceActivity extends AppCompatActivity {
     private Place place;
     final static int REQUEST_CODE_EDIT = 1;
     LinearLayout llAddress;
+    LinearLayout llPhone;
+    LinearLayout llUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,22 @@ public class ViewPlaceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showMap(v);
+            }
+        });
+
+        llUrl = findViewById(R.id.ll_url);
+        llUrl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWebSite(v);
+            }
+        });
+
+        llPhone = findViewById(R.id.ll_phone);
+        llPhone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                phoneCall(v);
             }
         });
 
