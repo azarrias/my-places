@@ -3,6 +3,7 @@ package com.waxtadpolegames.android.myplaces;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -166,7 +167,14 @@ public class ViewPlaceActivity extends AppCompatActivity {
     }
 
     public void openGallery(View view) {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        String action;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            action = Intent.ACTION_OPEN_DOCUMENT;
+        } else {
+            action = Intent.ACTION_PICK;
+        }
+
+        Intent intent = new Intent(action, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, REQUEST_CODE_GALLERY);
     }
 
