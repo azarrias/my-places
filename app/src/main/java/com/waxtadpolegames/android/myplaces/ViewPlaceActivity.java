@@ -1,11 +1,16 @@
 package com.waxtadpolegames.android.myplaces;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +23,10 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ViewPlaceActivity extends AppCompatActivity {
@@ -28,12 +36,15 @@ public class ViewPlaceActivity extends AppCompatActivity {
 
     final static int REQUEST_CODE_EDIT = 1;
     final static int REQUEST_CODE_GALLERY = 2;
+    final static int REQUEST_CODE_CAMERA = 3;
 
     private LinearLayout llAddress;
     private LinearLayout llPhone;
     private LinearLayout llUrl;
     private ImageView galleryLogo;
+    private ImageView cameraLogo;
     private ImageView ivPicture;
+    private Uri pictureUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +83,14 @@ public class ViewPlaceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 openGallery(v);
+            }
+        });
+
+        cameraLogo = findViewById(R.id.camera);
+        cameraLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takePicture(v);
             }
         });
 
@@ -133,6 +152,13 @@ public class ViewPlaceActivity extends AppCompatActivity {
         } else if (data != null && requestCode == REQUEST_CODE_GALLERY) {
             place.setPhoto(data.getDataString());
             setPicture(ivPicture, place.getPhoto());
+        } else if (requestCode == REQUEST_CODE_CAMERA) {
+            if (resultCode == Activity.RESULT_OK && place != null && pictureUri != null) {
+                place.setPhoto(pictureUri.toString());
+                setPicture(ivPicture, place.getPhoto());
+            } else {
+                Toast.makeText(this, "Photo not captured", Toast.LENGTH_LONG).show();
+            }
         } else {
             Toast.makeText(this, "Picture not loaded", Toast.LENGTH_LONG).show();
         }
@@ -184,6 +210,27 @@ public class ViewPlaceActivity extends AppCompatActivity {
         } else {
             imageView.setImageBitmap(null);
         }
+    }
+
+    public void takePicture(View view) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File storageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_DCIM), "Camera");
+
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
+
+        try {
+            File imgFile = File.createTempFile("img_" + System.currentTimeMillis() / 1000,
+                    ".jpg", storageDir);
+            pictureUri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", imgFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, pictureUri);
+        intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+        startActivityForResult(intent, REQUEST_CODE_CAMERA);
     }
 
     public void updateViews() {
