@@ -43,6 +43,7 @@ public class ViewPlaceActivity extends AppCompatActivity {
     private LinearLayout llUrl;
     private ImageView galleryLogo;
     private ImageView cameraLogo;
+    private ImageView deletePicIcon;
     private ImageView ivPicture;
     private Uri pictureUri;
 
@@ -94,9 +95,22 @@ public class ViewPlaceActivity extends AppCompatActivity {
             }
         });
 
+        deletePicIcon = findViewById(R.id.delete_pic);
+        deletePicIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deletePicture(v);
+            }
+        });
+
         ivPicture = findViewById(R.id.pic);
 
         updateViews();
+    }
+
+    private void deletePicture(View v) {
+        place.setPhoto(null);
+        setPicture(ivPicture, null);
     }
 
     @Override
