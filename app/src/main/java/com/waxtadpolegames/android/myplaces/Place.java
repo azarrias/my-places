@@ -14,6 +14,11 @@ public class Place {
 
     public Place(String name, String address, double longitude, double latitude, TypePlace type,
                  String phone, String url, String comment, int rating) {
+        this(name, address, longitude, latitude, type, phone, url, comment, rating, null);
+    }
+
+    public Place(String name, String address, double longitude, double latitude, TypePlace type,
+                 String phone, String url, String comment, int rating, String photo) {
         date = System.currentTimeMillis(); // Unix time
         position = new GeoCoord(longitude, latitude);
         this.name = name;
@@ -23,6 +28,7 @@ public class Place {
         this.comment = comment;
         this.rating = rating;
         this.type = type;
+        this.photo = photo;
     }
 
     public Place() {

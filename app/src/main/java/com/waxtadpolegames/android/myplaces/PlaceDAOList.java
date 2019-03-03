@@ -1,11 +1,14 @@
 package com.waxtadpolegames.android.myplaces;
 
+import android.content.ContentResolver;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class PlaceDAOList implements IPlaceDAO {
     protected List<Place> placesVector = examplePlaces();
+    private static final String DEFAULT_PHOTO = "android.resource://" + PlaceDAOList.class.getPackage().getName() + "/drawable/foto_epsg";
 
     public PlaceDAOList(){
         placesVector = examplePlaces();
@@ -58,7 +61,8 @@ public class PlaceDAOList implements IPlaceDAO {
                 "+1 212-736-3100",
                 "http://www.esbnyc.com/",
                 "Beautiful view. Great historical building one of my favorites. Absolutely Love NYC!! Will return soon.",
-                5));
+                5,
+                DEFAULT_PHOTO));
         places.add(new Place("Eiffel Tower",
                 "Champ de Mars, 5 Avenue Anatole France, 75007 Paris, France",
                 2.2922926,
@@ -67,7 +71,8 @@ public class PlaceDAOList implements IPlaceDAO {
                 "+33 892 70 12 39",
                 "https://www.toureiffel.paris/en",
                 "Worth the wait and trip up to the top.",
-                5));
+                5,
+                DEFAULT_PHOTO));
         places.add(new Place("El celler de Can Roca",
                 "Carrer de Can Sunyer, 48, 17007 Girona",
                 2.805826,
@@ -76,7 +81,8 @@ public class PlaceDAOList implements IPlaceDAO {
                 "972 22 21 57",
                 "https://cellercanroca.com/",
                 "Best menu ever ...",
-                5));
+                5,
+                DEFAULT_PHOTO));
         places.add(new Place("HR Giger Bar Museum",
                 "Rue du Château 2, 1630 Gruyères, Switzerland",
                 7.0823665,
@@ -85,7 +91,8 @@ public class PlaceDAOList implements IPlaceDAO {
                 "+41 26 921 08 00",
                 "http://www.hrgiger.com",
                 "A beer with the aliens",
-                3));
+                3,
+                DEFAULT_PHOTO));
         places.add(new Place("Bibliotheca Alexandrina",
                 "El Shatby, Alexandria 30100, Egypt",
                 29.9070125,
@@ -94,7 +101,8 @@ public class PlaceDAOList implements IPlaceDAO {
                 "+20 3 4839999",
                 "http://www.bibalex.org/en/default",
                 "Knowledge hub!",
-                4));
+                4,
+                DEFAULT_PHOTO));
 
         return places;
     }
