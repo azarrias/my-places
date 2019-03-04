@@ -2,8 +2,11 @@ package com.waxtadpolegames.android.myplaces;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -24,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -220,9 +224,30 @@ public class ViewPlaceActivity extends AppCompatActivity {
 
     protected void setPicture(ImageView imageView, String uri) {
         if (uri != null && !uri.isEmpty() && !uri.equals("null")) {
-            imageView.setImageURI(Uri.parse(uri));
+            //imageView.setImageURI(Uri.parse(uri));
+            imageView.setImageBitmap(downscaleBitmap(this, uri, 1024, 1024));
         } else {
             imageView.setImageBitmap(null);
+        }
+    }
+
+    public static Bitmap downscaleBitmap(Context context, String uri, int maxWidth, int maxHeight) {
+        try {
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            BitmapFactory.decodeStream(context.getContentResolver()
+                .openInputStream(Uri.parse(uri)), null, options);
+            options.inSampleSize = (int) Math.max(
+                    Math.ceil(options.outWidth / maxWidth),
+                    Math.ceil(options.outHeight / maxHeight));
+            options.inJustDecodeBounds = false;
+            return BitmapFactory.decodeStream(context.getContentResolver()
+                .openInputStream(Uri.parse(uri)), null, options);
+        } catch (FileNotFoundException e) {
+            Toast.makeText(context, "File / resource not found",
+                    Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+            return null;
         }
     }
 
